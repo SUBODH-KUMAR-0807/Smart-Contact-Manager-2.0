@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html class="light" lang="en"  xmlns:th="http://www.thymeleaf.org"
+                  th:fragment="parent(content,title,script)">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-th-replace="${title}"></title>
+
+  <!--flowbite css: it used for card-->
+
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" data-th-href="@{/css/output.css}">
+
+  <!--login with google css-->
+  <link rel="stylesheet" data-th-href="@{/css/style.css}">
+
+  <!--font awesome cdn-->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<!--bg-primary is target in style.css-->
+
+<body class="dark:bg-gray-900 bg-gray-100 dark:text-white bg-primary">
+  
+  <!--common navbar or header-->
+
+  <!--loggedInUser has user data, it come from RootController-->
+
+  <!--navbar: user is logged in-->
+  <div data-th-if="${loggedInUser}">
+    <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+  </div>
+
+  
+
+  <!--navbar: user is not logged in-->
+  <div th:unless="${loggedInUser}">
+    <div data-th-replace="~{navbar :: navbar}"></div>
+  </div>
+
+
+  
+  <!-- main content -->
+  <div class="p-8">
+    <section data-th-replace="${content}"></section>
+  </div>
+
+  <!--flow bite cdn-->
+  
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+
+  <!-- sweet alert Cdn-->
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!--scipt.js is used for theme change-->
+  <script data-th-src="@{'/js/script.js'}"></script>
+  <th:block data-th-replace="${script}"></th:block>
+
+</body>
+</html>

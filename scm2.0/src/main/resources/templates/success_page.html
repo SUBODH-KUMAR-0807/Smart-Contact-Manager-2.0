@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="~{base :: parent(~{::#content},~{::title}, ~{::script})}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home.html</title>
+
+  <link rel="stylesheet" data-th-href="@{/css/output.css}">
+
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+  <body>
+
+    <div id="content" class="text-center mt-5 md:w-1/2 mx-auto">
+
+      <div data-th-replace="message::messagebox"></div>
+      <a href="/login" class="bg-blue-700 mt-2 text-white px-3 py-2 rounded">Login</a>
+    </div>
+    
+
+    <script>
+      console.log("success_page.html");
+    </script>
+
+  
+</body>
+</html>

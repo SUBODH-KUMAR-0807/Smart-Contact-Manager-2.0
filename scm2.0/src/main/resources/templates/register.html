@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+
+  <head>
+    <title>Signup</title>
+  </head>
+
+  <body>
+    <div id="content" class="pt-5">
+      
+      <!--Total 12 grid hogi card ki-->
+
+      <!--small screen pr card ki width 12 hogi-->
+      <!--medium screen pr left,right se 2,2 empty space rhenge. md pr card size 8 hoga -->
+      <!--large screen pr left,right se 3,3 empty space rhenge. lg pr card size 6 hoga -->
+      <!--xl screen pr left,right se 4,4 empty space rhenge. xl pr card size 4 hoga -->
+
+      <div class="grid grid-cols-12">
+        <div class="md:col-span-2 lg:col-span-3: xl:col-span-4"></div>
+        <div class="col-span-12 md:col-span-8 lg:col-span-6 xl:col-span-4">
+        
+
+          <!-- card start: download from flowbite -->
+
+          <!-- p-6 : space between card and data inside card -->  
+          <!--border t: border from top-->
+          <div class="block p-6 border-t-[10px] border-blue-700 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-blue-700 dark:hover:bg-gray-700">
+        
+        
+            <!-- message here -->
+
+            <!--message is message.html, messagebox is the fragment-->
+            <div data-th-replace="message::messagebox"></div>
+
+            <h5
+              class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            >
+              Signup Here
+            </h5>
+            <p class="font-normal text-gray-400 dark:text-gray-400">
+              Start managing contacts on cloud ...
+            </p>
+
+            <!-- Form start -->
+
+            <!--do register is exist on PageController.java-->
+            <form
+              data-th-action="@{'/do-register'}"
+              method="post"
+              data-th-object="${userForm}"
+              class="mt-5"
+              novalidate
+              >
+
+              <!-- name  -->
+
+              <!--if error come: ${userForm.name} or
+              data-th-field="*{name}" give value of name from UserForm class.-->
+
+              <div class="mb-4">
+
+                <!--download default form from flowbite-->
+                <label
+                  for="name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left px-1"
+                  >Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  data-th-field="*{name}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter here"
+                  required
+                />
+                <!--if hasErrors return true then all content of p block will execute, data-th-errors="*{name}" fetch error message from userForm and print the error on page-->
+                <p
+                  data-th-if="${#fields.hasErrors('name')}"
+                  data-th-errors="*{name}"
+                  class="text-red-600 text-left px-1 py-2"
+                ></p>
+            
+              </div>
+
+
+              <!-- email field -->
+              <div class="mb-4">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left px-1" 
+                  >Email</label
+                >
+                <input
+                  data-th-field="*{email}"
+                  type="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter email"
+                  required />
+            
+
+                <p
+                  data-th-if="${#fields.hasErrors('email')}"
+                  data-th-errors="*{email}"
+                  class="text-red-600 text-left px-1 py-2"
+                ></p>
+
+              </div>
+
+
+              <!-- password field -->
+              <div class="mb-4">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left px-1"
+                  >New Password</label
+                >
+                <input
+                  data-th-field="*{password}"
+                  type="password"
+                  id="password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                  placeholder="Enter password"/>
+                
+                <p
+                  data-th-if="${#fields.hasErrors('password')}"
+                  data-th-errors="*{password}"
+                  class="text-red-600 text-left px-1 py-2"
+                ></p>
+              </div>
+
+              <!-- Phone field -->
+              <div class="mb-4">
+                <label
+                  for="phone"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left px-1"
+                  >Contact Number</label
+                >
+                <input
+                  data-th-field="*{phoneNumber}"
+                  type="text"
+                  id="phone"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                  placeholder="Enter contact number"
+                />
+
+                <p
+                  data-th-if="${#fields.hasErrors('phoneNumber')}"
+                  data-th-errors="*{phoneNumber}"
+                  class="text-red-600 text-left px-1 py-2"
+                ></p>
+              </div>
+
+              <!-- about textarea -->
+              <div class="mb-4">
+                <label
+                  for="about"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left px-1"
+                  >Write something about yourself</label
+                >
+                <textarea
+                  data-th-field="*{about}"
+                  id="about"
+                  rows="4"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Write here..."
+                ></textarea>
+
+                <p
+                  data-th-if="${#fields.hasErrors('about')}"
+                  data-th-errors="*{about}"
+                  class="text-red-600 text-left px-1 py-2"
+                ></p>
+
+              </div>
+
+
+              <!-- button -->
+
+              <!-- space-x-3 is space between two button-->
+              <!-- px-3 is width of button, py is height of button-->
+
+              <div class="mb-4 flex justify-center space-x-3">
+
+                <button
+                  type="submit"
+                  class="px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 text-white dark:bg-blue-800 dark:hover:bg-blue-600"
+                >
+                Singup
+                </button>
+
+                <button
+                  type="reset"
+                  class="px-3 py-2 rounded bg-red-800 hover:bg-red-700 text-white dark:bg-green-800 dark:hover:bg-green-600"
+                >
+                  Reset
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+          <!-- card end -->
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      console.log("Signup page");
+    </script>
+  </body>
+</html>
